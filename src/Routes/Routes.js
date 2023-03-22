@@ -4,6 +4,7 @@ import NotFound from "../components/Shared/NotFound";
 import Main from "../Layout/Main";
 import Login from "../components/Auth/Login";
 import Rider from "../components/Auth/Rider";
+import Learner from "../components/Auth/Learner";
 
 
 const router = createBrowserRouter([
@@ -21,8 +22,12 @@ const router = createBrowserRouter([
 				element: <Login />
 			},
 			{
-				path: '/signup',
+				path: '/signup-rider',
 				element: <Rider />
+			},
+			{
+				path: '/signup-learner',
+				element: <Learner />
 			},
 		]
 	}
