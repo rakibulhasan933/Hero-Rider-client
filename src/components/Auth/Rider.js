@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
-const Register = () => {
+const Rider = () => {
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
 	const password = useRef({});
@@ -228,4 +228,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default Rider;
