@@ -22,7 +22,7 @@ const Register = () => {
 			<div className='flex flex-col w-full max-w-2xl px-4 mx-auto sm:px-6'>
 				<div className='relative mt-12 sm:mt-16'>
 					<h1 className='text-2xl font-medium tracking-tight text-center text-gray-900'>
-						Sign up to your account
+						Sign up for Rider
 					</h1>
 				</div>
 				<div className='flex-auto px-4 py-10 mt-10 -mx-4 bg-white shadow-2xl shadow-gray-900/10 sm:mx-0 sm:flex-none sm:rounded-5xl sm:p-24'>
