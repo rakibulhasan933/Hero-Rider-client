@@ -10,7 +10,7 @@ const Register = () => {
 	password.current = watch("password", "");
 
 	const onSubmit = async (data) => {
-		console.log(data);
+		console.log(data?.profilePicture[0]);
 	}
 	const validateConfirmPassword = (value) => {
 		if (value !== password.current) {
@@ -120,7 +120,7 @@ const Register = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.age?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.age?.message}</span>}
 							</label>
-
+							{/* 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>NID Card Picture</label>
 							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
 								<FaCloudUploadAlt className="mr-2" />
@@ -135,7 +135,7 @@ const Register = () => {
 									className="sr-only"
 								/>
 							</label>
-							{errors.nidPicture && <p className="text-red-500 label-text-alt">{errors.nidPicture.message}</p>}
+							{errors.nidPicture && <p className="text-red-500 label-text-alt">{errors.nidPicture.message}</p>} */}
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Phone</label>
 							<input type="phone" placeholder="+8801793800000" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("phone", {
@@ -158,7 +158,7 @@ const Register = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.area?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.area?.message}</span>}
 							</label>
-
+							{/* 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Driving License Picture</label>
 							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
 								<FaCloudUploadAlt className="mr-2" />
@@ -173,7 +173,7 @@ const Register = () => {
 									className="sr-only"
 								/>
 							</label>
-							{errors.drivingLicense && <p className="text-red-500 label-text-alt">{errors.drivingLicense.message}</p>}
+							{errors.drivingLicense && <p className="text-red-500 label-text-alt">{errors.drivingLicense.message}</p>} */}
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Car Name</label>
 							<input type="text" placeholder="BMW" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("carName", {
@@ -196,7 +196,7 @@ const Register = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.carModel?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.carModel?.message}</span>}
 							</label>
-
+							{/* 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Car Name Plate Picture</label>
 							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
 								<FaCloudUploadAlt className="mr-2" />
@@ -211,7 +211,7 @@ const Register = () => {
 									className="sr-only"
 								/>
 							</label>
-							{errors.carNamePlate && <p className="text-red-500 label-text-alt">{errors.carNamePlate.message}</p>}
+							{errors.carNamePlate && <p className="text-red-500 label-text-alt">{errors.carNamePlate.message}</p>} */}
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Vehicle Type</label>
 							<select className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("vehicle")}>
