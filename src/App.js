@@ -5,7 +5,7 @@ import router from './Routes/Routes';
 
 function App() {
   return (
-    <div className="m-2 flex justify-center">
+    <div>
       <RouterProvider router={router} />
       <ToastContainer />
     </div>
