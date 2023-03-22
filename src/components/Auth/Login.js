@@ -45,7 +45,7 @@ const Login = () => {
 								{errors.password?.type === 'minLength' && <span className="text-red-500 label-text-alt">{errors.password?.message}</span>}
 							</label>
 
-							<input className='mt-3 w-full inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 cursor-pointer' type="submit" value="SING UP" />
+							<input className='mt-3 w-full inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 cursor-pointer' type="submit" value="LOGIN" />
 						</div>
 					</form>
 				</div>
