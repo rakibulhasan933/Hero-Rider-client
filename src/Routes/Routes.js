@@ -5,6 +5,8 @@ import Main from "../Layout/Main";
 import Login from "../components/Auth/Login";
 import Rider from "../components/Auth/Rider";
 import Learner from "../components/Auth/Learner";
+import Dashboard from "../Layout/Dashboard";
+import Profile from "../components/Dashboard/Profile";
 
 
 const router = createBrowserRouter([
@@ -28,6 +30,21 @@ const router = createBrowserRouter([
 			{
 				path: '/signup-learner',
 				element: <Learner />
+			},
+			{
+				path: '/dashboard/',
+				element: <Dashboard />,
+				errorElement: <NotFound />,
+				children: [
+					{
+						path: ':email',
+						element: <Profile />
+					},
+					{
+						path: 'Search',
+						element: <Profile />
+					},
+				]
 			},
 		]
 	}
