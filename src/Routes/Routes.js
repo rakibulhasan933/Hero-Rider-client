@@ -1,12 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import AddAvatar from "../components/AddAvatar/AddAvatar";
 import Home from "../components/Home/Home";
-import Login from "../components/Login/Login";
-import PrivateRoute from "../components/Login/PrivateRoute";
-import SignUp from "../components/Login/SignUp";
-import Products from "../components/Products/Products";
 import NotFound from "../components/Shared/NotFound";
 import Main from "../Layout/Main";
+import Login from "../components/Auth/Login";
 
 
 const router = createBrowserRouter([
@@ -20,22 +16,9 @@ const router = createBrowserRouter([
 				element: <Home />
 			},
 			{
-				path: '/products',
-				element: <PrivateRoute><Products /></PrivateRoute>
-			},
-			{
-				path: '/signup',
-				element: <SignUp />
-			},
-			{
 				path: '/login',
 				element: <Login />
 			},
-			{
-				path: '/upload',
-				element: <AddAvatar />
-			}
-
 		]
 	}
 ]);
