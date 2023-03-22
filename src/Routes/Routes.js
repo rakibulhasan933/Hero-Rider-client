@@ -7,6 +7,7 @@ import Rider from "../components/Auth/Rider";
 import Learner from "../components/Auth/Learner";
 import Dashboard from "../Layout/Dashboard";
 import Profile from "../components/Dashboard/Profile";
+import Search from "../components/Dashboard/Search";
 
 
 const router = createBrowserRouter([
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
 					},
 					{
 						path: 'Search',
-						element: <Profile />
+						element: <Search />
 					},
 				]
 			},
