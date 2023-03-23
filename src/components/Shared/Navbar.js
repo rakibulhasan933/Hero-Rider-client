@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-	const userId = localStorage.getItem('refreshToken');
+	const email = localStorage.getItem('refreshToken');
 	const navigate = useNavigate();
 	const [user, setUser] = useState('');
 	useEffect(() => {
-		fetch(`http://localhost:5000/auth/user/${userId}`)
+		fetch(`http://localhost:5000/auth/user/${email}`)
 			.then(res => res.json())
 			.then(data => {
-				setUser(data[0])
+				setUser(data)
 			});
-	}, [userId]);
+	}, [email]);
 	const SingOut = () => {
 		localStorage.removeItem('refreshToken');
 		localStorage.removeItem('access_token');
@@ -46,10 +46,11 @@ const Navbar = () => {
 					<li><Link to='/'>Home</Link></li>
 					<li><Link to='/about'>About</Link></li>
 					<li><Link to='/services'>Driving Packages</Link></li>
-					{user && <li><Link to='/dashboard'>Dashboard</Link></li>}
+					{user && <li><Link to='/dashboard/profile'>Dashboard</Link></li>}
 					<li><Link to='/'>Reviews</Link></li>
 					<li><Link to='/'>Contacts Us</Link></li>
-					<li>{user ? <button className="btn btn-success">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
+					<li>{user ? <a href="/login" onClick={SingOut}>SingOut</a> : <h4 className='mr-4'><Link to='/login'>Login</Link></h4>}
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -57,5 +58,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// { user ? <a href="/login" onClick={SingOut}>SingOut</a> : <h4 className='mr-4'><Link to='/login'>Login</Link></h4> }
