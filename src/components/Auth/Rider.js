@@ -88,8 +88,8 @@ const Rider = () => {
 								<span>Choose Image</span>
 								<input
 									type="file"
-									id="image"
-									accept="image/*"
+									id="files"
+									accept="image"
 									{...register("profilePicture", {
 										required: "You must select an image"
 									})}
