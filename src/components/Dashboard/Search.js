@@ -25,17 +25,14 @@ const Search = () => {
 
 	function handleFormSubmit(event) {
 		event.preventDefault();
-
-	}
-
-	// useEffect(() => {
-	// 	setLoading(true);
-	// 	fetch(`http://localhost:5000/auth/student?search=${searchQuery}&highest=${highest}&lowest=${lowest}`)
-	// 		.then(res => res.json()).then((data) => {
-	// 			setLoading(false)
-	// 			setResult(data.students)
-	// 		})
-	// }, [searchQuery]);
+		setLoading(true);
+		fetch(`http://localhost:5000/auth/student?highest=${highest}&lowest=${lowest}&page=${page}`)
+			.then(res => res.json())
+			.then((data) => {
+				setLoading(false)
+				setResult(data.students)
+			})
+	};
 
 	if (isLoading) {
 		return <Loading />
@@ -45,7 +42,6 @@ const Search = () => {
 	return (
 		<div>
 			<Fragment>
-
 				<div className="flex flex-row gap-2">
 					<form>
 						<input
@@ -69,7 +65,7 @@ const Search = () => {
 							placeholder="Lowest Age"
 							className="p-2 ml-2 mr-4 border border-gray-400 rounded-lg w-1/10"
 						/>
-						<input type="submit" className="w-auto px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg " value="Search For Age" />
+						<input type="submit" className="w-auto px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg cursor-pointer " value="Search For Age" />
 					</form>
 				</div>
 			</Fragment>
