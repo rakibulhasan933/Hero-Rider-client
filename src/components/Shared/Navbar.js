@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-	const email = localStorage.getItem('refreshToken');
 	const navigate = useNavigate();
+
+	const email = localStorage.getItem('refreshToken');
 	const [user, setUser] = useState('');
 	useEffect(() => {
-		fetch(`http://localhost:5000/auth/user/${email}`)
+		fetch(`http://localhost:5000/auth/user/${email}`, {
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+				authorization: `Bearer ${localStorage.getItem('accessToken')}`
+			},
+		})
 			.then(res => res.json())
 			.then(data => {
 				setUser(data)

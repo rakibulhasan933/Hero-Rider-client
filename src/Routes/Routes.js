@@ -10,6 +10,7 @@ import Profile from "../components/Dashboard/Profile";
 import Search from "../components/Dashboard/Search";
 import PrivateRoute from "../components/Auth/PrivateRoute";
 import Products from "../components/Products/Products";
+import Payment from "../components/Dashboard/Payment";
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
 					{
 						path: 'Search',
 						element: <Search />
+					},
+					{
+						path: 'payment/:id',
+						element: <Payment />
 					},
 				]
 			},

@@ -16,10 +16,8 @@ const Search = () => {
 		setSearchQuery(event.target.value);
 	}
 	useEffect(() => {
-		setLoading(true);
 		fetch(`http://localhost:5000/auth/student?search=${searchQuery}&page=${page}`)
 			.then(res => res.json()).then((data) => {
-				setLoading(false)
 				setResult(data.students)
 			})
 	}, [searchQuery, page]);

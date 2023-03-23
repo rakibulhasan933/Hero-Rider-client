@@ -3,34 +3,8 @@ import { Link } from 'react-router-dom';
 import Loading from '../Shared/Loading';
 
 const UserList = ({ user, setStatusUpdate }) => {
-	const [isLoading, setLoading] = useState(false);
 
 
-
-
-	// function handleUnBlock(email) {
-	// 	
-	// function handleBlock(email) {
-	// 	setLoading(false)
-	// 	fetch('http://localhost:5000/auth/block', {
-	// 		method: 'PATCH',
-	// 		headers: {
-	// 			headers: {
-	// 				'content-type': 'application/json',
-	// 			},
-	// 			body: (email)
-	// 		}
-	// 	})
-	// 		.then(res => res.json())
-	// 		.then(data => {
-	// 			setLoading(false);
-	// 			console.log(data)
-	// 		})
-	// }
-
-	// if (isLoading) {
-	// 	return <Loading />
-	// }
 
 	return (
 		<tr>

@@ -15,6 +15,7 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 			headers: {
 				headers: {
 					'content-type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('accessToken')}`
 				}
 			}
 		})
@@ -37,6 +38,7 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 			headers: {
 				headers: {
 					'content-type': 'application/json',
+					authorization: `Bearer ${localStorage.getItem('accessToken')}`
 				}
 			}
 		})
