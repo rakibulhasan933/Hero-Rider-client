@@ -21,7 +21,7 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 			.then(res => res.json())
 			.then(data => {
 				setLoading(false);
-				if (data.modifiedCount === 1) {
+				if (data.modifiedCount > 0) {
 					toast.success('Rider Blocked successfully');
 					setStatusUpdate(null);
 				}
