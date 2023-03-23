@@ -38,7 +38,7 @@ const router = createBrowserRouter([
 				errorElement: <NotFound />,
 				children: [
 					{
-						path: ':email',
+						path: 'profile',
 						element: <Profile />
 					},
 					{

@@ -26,7 +26,7 @@ const Login = () => {
 					const access_token = data?.access_token;
 					localStorage.setItem('access_token', access_token)
 					localStorage.setItem('refreshToken', email);
-					navigate('/dashboard')
+					navigate('/dashboard/profile')
 				} else {
 					setError(data?.error)
 				}
