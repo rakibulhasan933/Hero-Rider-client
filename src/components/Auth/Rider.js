@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
@@ -9,10 +9,9 @@ const Rider = () => {
 	const [nidPicture, setNidPicture] = useState([]);
 	const [drivingLicense, setDrivingLicense] = useState([]);
 	const [carNamePlate, setCarNamePlate] = useState([]);
-	console.log(profilePicture)
-	console.log(nidPicture)
-	console.log(drivingLicense)
-	console.log(carNamePlate)
+	const [success, setSuccess] = useState('');
+	const [error, setError] = useState('');
+	const navigate = useNavigate()
 
 	const password = useRef({});
 	password.current = watch("password", "");
@@ -23,6 +22,27 @@ const Rider = () => {
 		formData.append('nidPicture', nidPicture);
 		formData.append('drivingLicense', drivingLicense);
 		formData.append('carNamePlate', carNamePlate);
+		formData.append('name', data.name)
+		formData.append('password', data.password)
+		formData.append('email', data.email)
+		formData.append('address', data.address)
+		formData.append('age', data.age)
+		formData.append('phone', data.phone)
+		formData.append('area', data.area)
+		formData.append('carName', data.carName)
+		formData.append('carModel', data.carModel)
+		formData.append('vehicle', data.vehicle)
+
+
+		fetch('http://localhost:5000/auth/rider', {
+			method: 'POST',
+			body: formData,
+		})
+			.then(res => res.json())
+			.then(data => {
+				setSuccess(data)
+				navigate('/login');
+			}).catch((err) => setError(err));
 	}
 	const validateConfirmPassword = (value) => {
 		if (value !== password.current) {
@@ -203,6 +223,8 @@ const Rider = () => {
 
 							<input className='mt-3 w-full inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 cursor-pointer' type="submit" value="SIGNUP" />
 						</div>
+						{success && <p className='text-base text-green-500'>{success}</p>}
+						{error && <p className='text-base text-red-500'>{error}</p>}
 					</form>
 				</div>
 			</div>
