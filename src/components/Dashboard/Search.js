@@ -1,29 +1,82 @@
-import React from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import Loading from '../Shared/Loading';
+import UserList from './UserList';
 
 const Search = () => {
+	const [searchQuery, setSearchQuery] = useState('');
+	const [result, setResult] = useState([]);
+	const [isLoading, setLoading] = useState(false);
+
+	function handleInputChange(event) {
+		setSearchQuery(event.target.value);
+	}
+
+	useEffect(() => {
+		setLoading(true);
+		fetch(`http://localhost:5000/auth/student?search=${searchQuery}`)
+			.then(res => res.json()).then((data) => {
+				setLoading(false)
+				setResult(data.students)
+			})
+	}, [searchQuery]);
+
+	if (isLoading) {
+		return <Loading />
+	}
+
+	console.log(result)
 	return (
-		<div className="relative text-gray-600">
-			<input
-				className="w-full h-10 px-5 pr-16 text-sm bg-white border-2 border-gray-300 rounded-lg focus:outline-none"
-				type="search"
-				name="search"
-				placeholder="Search"
-			/>
-			<button type="submit" className="absolute top-0 right-0 mt-3 mr-4">
-				<svg
-					className="w-4 h-4 text-gray-600 fill-current"
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-				>
-					<path
-						className="heroicon-ui"
-						d="M15.56 14.44a7 7 0 1 1-1.12-1.12l5.01-5a1 1 0 0 1 1.42 1.42l-5.01 5zm-6.36-1.07a5 5 0 1 0 7.07 0 5 5 0 0 0-7.07 0z"
-					/>
-				</svg>
-			</button>
+		<div>
+			<Fragment>
+				<form>
+					<div className="flex flex-row gap-1">
+						<input
+							type="text"
+							value={searchQuery}
+							onChange={handleInputChange}
+							placeholder="Search..."
+							className="w-1/2 p-2 border border-gray-400 rounded-lg"
+						/>
+
+						{/* <input
+							type="text"
+							placeholder="Search"
+							{...register("search")}
+							className="w-1/2 p-2 border border-gray-400 rounded-lg"
+						/>
+						<button
+							type="submit"
+							className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg"
+						>
+							Search
+						</button> */}
+					</div>
+				</form>
+			</Fragment>
+			<div className="flex flex-row my-2">
+
+				<div className="w-full overflow-x-auto">
+					<table className="table w-full">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Email/Career</th>
+								<th>JOB</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								result?.map((user) => <UserList key={user._id} user={user} />)
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	);
 };
 
 export default Search;
+
 
