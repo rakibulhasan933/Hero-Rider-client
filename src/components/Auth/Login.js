@@ -1,12 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
-	const onSubmit = async (data) => {
-		console.log(data);
+	const [error, setError] = useState('');
+
+	const navigate = useNavigate()
+	const onSubmit = data => {
+		const user = {
+			email: data.email,
+			password: data.password,
+		};
+		fetch('http://localhost:5000/auth/login', {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json'
+			},
+			body: JSON.stringify(user)
+		})
+			.then(res => res.json())
+			.then(data => {
+				if (data?.success) {
+					const email = data?.email;
+					const access_token = data?.access_token;
+					localStorage.setItem('access_token', access_token)
+					localStorage.setItem('refreshToken', email);
+					navigate('/dashboard')
+				} else {
+					setError(data?.error)
+				}
+			});
 	}
+	console.log(error);
 	return (
 		<main className='flex min-h-full pt-16 overflow-hidden sm:py-28'>
 			<div className='flex flex-col w-full max-w-2xl px-4 mx-auto sm:px-6'>
