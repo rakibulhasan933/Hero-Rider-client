@@ -53,7 +53,7 @@ const Search = () => {
 							value={searchQuery}
 							onChange={handleInputChange}
 							placeholder="Search..."
-							className="w-1/2 p-2 border border-gray-400 rounded-lg"
+							className="w-full p-2 border border-gray-400 rounded-lg"
 						/>
 					</form>
 					<form onSubmit={handleFormSubmit}>
@@ -61,15 +61,15 @@ const Search = () => {
 							type="number"
 							onChange={e => setHighest(e.target.value)}
 							placeholder="Highest Age"
-							className="w-1/12 p-2 border border-gray-400 rounded-lg"
+							className="p-2 border border-gray-400 rounded-lg w-1/10"
 						/>
 						<input
 							type="number"
 							onChange={e => setLowest(e.target.value)}
 							placeholder="Lowest Age"
-							className="w-1/12 p-2 border border-gray-400 rounded-lg"
+							className="p-2 ml-2 mr-4 border border-gray-400 rounded-lg w-1/10"
 						/>
-						<input type="submit" className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg" value="Search For Age" />
+						<input type="submit" className="w-auto px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg " value="Search For Age" />
 					</form>
 				</div>
 			</Fragment>
