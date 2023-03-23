@@ -9,7 +9,6 @@ const Search = () => {
 	const [highest, setHighest] = useState(0);
 	const [lowest, setLowest] = useState(0);
 	const [page, setPage] = useState(1);
-	console.log(page);
 
 	function handleInputChange(event) {
 		setSearchQuery(event.target.value);
