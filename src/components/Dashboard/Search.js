@@ -6,19 +6,36 @@ const Search = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [result, setResult] = useState([]);
 	const [isLoading, setLoading] = useState(false);
+	const [highest, setHighest] = useState(0);
+	const [lowest, setLowest] = useState(0);
 
 	function handleInputChange(event) {
 		setSearchQuery(event.target.value);
 	}
 
-	useEffect(() => {
+	function handleFormSubmitSearch(event) {
+		event.preventDefault();
 		setLoading(true);
 		fetch(`http://localhost:5000/auth/student?search=${searchQuery}`)
 			.then(res => res.json()).then((data) => {
 				setLoading(false)
 				setResult(data.students)
 			})
-	}, [searchQuery]);
+	}
+
+	function handleFormSubmit(event) {
+		event.preventDefault();
+
+	}
+
+	// useEffect(() => {
+	// 	setLoading(true);
+	// 	fetch(`http://localhost:5000/auth/student?search=${searchQuery}&highest=${highest}&lowest=${lowest}`)
+	// 		.then(res => res.json()).then((data) => {
+	// 			setLoading(false)
+	// 			setResult(data.students)
+	// 		})
+	// }, [searchQuery]);
 
 	if (isLoading) {
 		return <Loading />
@@ -28,8 +45,9 @@ const Search = () => {
 	return (
 		<div>
 			<Fragment>
-				<form>
-					<div className="flex flex-row gap-1">
+
+				<div className="flex flex-row gap-2">
+					<form onSubmit={handleFormSubmitSearch}>
 						<input
 							type="text"
 							value={searchQuery}
@@ -37,24 +55,26 @@ const Search = () => {
 							placeholder="Search..."
 							className="w-1/2 p-2 border border-gray-400 rounded-lg"
 						/>
-
-						{/* <input
-							type="text"
-							placeholder="Search"
-							{...register("search")}
-							className="w-1/2 p-2 border border-gray-400 rounded-lg"
+						<input type="submit" className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg" value="Search" />
+					</form>
+					<form onSubmit={handleFormSubmit}>
+						<input
+							type="number"
+							onChange={e => setHighest(e.target.value)}
+							placeholder="Highest Age"
+							className="w-1/12 p-2 border border-gray-400 rounded-lg"
 						/>
-						<button
-							type="submit"
-							className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg"
-						>
-							Search
-						</button> */}
-					</div>
-				</form>
+						<input
+							type="number"
+							onChange={e => setLowest(e.target.value)}
+							placeholder="Lowest Age"
+							className="w-1/12 p-2 border border-gray-400 rounded-lg"
+						/>
+						<input type="submit" className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg" value="Search For Age" />
+					</form>
+				</div>
 			</Fragment>
 			<div className="flex flex-row my-2">
-
 				<div className="w-full overflow-x-auto">
 					<table className="table w-full">
 						<thead>
@@ -72,6 +92,13 @@ const Search = () => {
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div className="flex justify-center ">
+				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">1</button>
+				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">2</button>
+				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">3</button>
+				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">4</button>
+				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">5</button>
 			</div>
 		</div>
 	);
