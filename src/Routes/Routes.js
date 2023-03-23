@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import Profile from "../components/Dashboard/Profile";
 import Search from "../components/Dashboard/Search";
 import PrivateRoute from "../components/Auth/PrivateRoute";
+import Products from "../components/Products/Products";
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				element: <Home />
+			},
+			{
+				path: '/services',
+				element: <Products />
 			},
 			{
 				path: '/login',
