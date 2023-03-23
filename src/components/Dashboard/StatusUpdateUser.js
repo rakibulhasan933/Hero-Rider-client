@@ -21,31 +21,19 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 			.then(res => res.json())
 			.then(data => {
 				setLoading(false);
-				console.log(data);
+				if (data.modifiedCount === 1) {
+					toast.success('Rider Blocked successfully');
+					setStatusUpdate(null);
+				}
+				else {
+					toast.error('Failed Blocked Rider')
+				}
 			})
 	}
 
 	if (isLoading) {
 		return <Loading />
 	}
-
-	// 		headers: {
-	// 			'authorization': `Bearer ${localStorage.getItem('accessToken')}`
-	// 		}
-	// 	})
-	// 		.then(res => res.json())
-	// 		.then(data => {
-	// 			if (data.deletedCount) {
-	// 				toast.success('Doctor Deleted successfully');
-	// 				refetch();
-	// 				setDeleteDoctor(null);
-	// 			}
-
-	// 			else {
-	// 				toast.error('Failed Deleted Doctor')
-	// 			}
-	// 		})
-	// }
 	return (
 		<div>
 			<input type="checkbox" id="status-update-modal" className="modal-toggle" />
@@ -53,10 +41,10 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 				<div className="text-center modal-box">
 					<h3 className="text-lg font-bold text-red-600">{name}</h3>
 					<h3 className="text-lg font-bold text-blue-600">{email}</h3>
-					<p className="py-4">Are you sure you want to delete doctor profile ?</p>
+					<p className="py-4">Are you sure you want to Blocked Rider profile ?</p>
 					<div className="modal-action">
-						<a href="/dashboard/search"><button onClick={() => handleBlock(email)} className="mr-5 btn btn-error">Blocked</button></a>
-						<label htmlFor="delete-doctor-modal" className="justify-center bg-green-700 btn">Cancel</label>
+						<button onClick={() => handleBlock(email)} className="mr-5 btn btn-error">Blocked</button>
+						<label htmlFor="status-update-modal" className="justify-center bg-green-700 btn">Cancel</label>
 					</div>
 				</div>
 			</div>
