@@ -33,11 +33,8 @@ const Navbar = () => {
 					</label>
 					<ul tabIndex={0} className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
 						<li><Link to='/'>Home</Link></li>
-						<li><Link to='/about'>About</Link></li>
 						<li><Link to='/services'>Driving Packages</Link></li>
 						{user && <li><Link to='/dashboard'>Dashboard</Link></li>}
-						<li><Link to='/'>Reviews</Link></li>
-						<li><Link to='/'>Contacts Us</Link></li>
 						<li>{user ? <button className="btn btn-success">Sign Out</button> : <Link to='/login'>Login</Link>}</li>
 					</ul>
 				</div>
@@ -51,11 +48,8 @@ const Navbar = () => {
 			<div className="hidden navbar-center lg:flex">
 				<ul className="p-0 menu menu-horizontal">
 					<li><Link to='/'>Home</Link></li>
-					<li><Link to='/about'>About</Link></li>
 					<li><Link to='/services'>Driving Packages</Link></li>
 					{user && <li><Link to='/dashboard/profile'>Dashboard</Link></li>}
-					<li><Link to='/'>Reviews</Link></li>
-					<li><Link to='/'>Contacts Us</Link></li>
 					<li>{user ? <a href="/login" onClick={SingOut}>SingOut</a> : <h4 className='mr-4'><Link to='/login'>Login</Link></h4>}
 					</li>
 				</ul>
