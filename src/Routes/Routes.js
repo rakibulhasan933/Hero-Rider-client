@@ -8,6 +8,7 @@ import Learner from "../components/Auth/Learner";
 import Dashboard from "../Layout/Dashboard";
 import Profile from "../components/Dashboard/Profile";
 import Search from "../components/Dashboard/Search";
+import PrivateRoute from "../components/Auth/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/dashboard/',
-				element: <Dashboard />,
+				element: <PrivateRoute><Dashboard /></PrivateRoute>,
 				errorElement: <NotFound />,
 				children: [
 					{
