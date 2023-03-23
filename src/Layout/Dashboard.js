@@ -11,9 +11,8 @@ const Dashboard = () => {
 			<div className="drawer-side">
 				<label tabIndex={1} htmlFor="my-dashboard" className="drawer-overlay"></label>
 				<ul className="p-4 overflow-y-auto menu w-80 bg-base-100 text-base-content">
-					<li><Link to="/dashboard">My Appointments</Link></li>
-					<li><Link to="/dashboard/review">My Reviews</Link></li>
-					<li><Link to="/dashboard/history">My History</Link></li>
+					<li><Link to="/dashboard/profile">My Profile</Link></li>
+					<li><Link to="/dashboard/search">User Search</Link></li>
 					<li><Link to="/dashboard/bookings">All Booking</Link></li>
 					<li><Link to="/dashboard/users">All Users</Link></li>
 					<li><Link to="/dashboard/add_doctor">Add Doctor</Link></li>
