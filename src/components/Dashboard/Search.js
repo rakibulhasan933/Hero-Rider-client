@@ -8,20 +8,20 @@ const Search = () => {
 	const [isLoading, setLoading] = useState(false);
 	const [highest, setHighest] = useState(0);
 	const [lowest, setLowest] = useState(0);
+	const [page, setPage] = useState(1);
+	console.log(page);
 
 	function handleInputChange(event) {
 		setSearchQuery(event.target.value);
 	}
-
-	function handleFormSubmitSearch(event) {
-		event.preventDefault();
+	useEffect(() => {
 		setLoading(true);
-		fetch(`http://localhost:5000/auth/student?search=${searchQuery}`)
+		fetch(`http://localhost:5000/auth/student?search=${searchQuery}&page=${page}`)
 			.then(res => res.json()).then((data) => {
 				setLoading(false)
 				setResult(data.students)
 			})
-	}
+	}, [searchQuery, page]);
 
 	function handleFormSubmit(event) {
 		event.preventDefault();
@@ -47,7 +47,7 @@ const Search = () => {
 			<Fragment>
 
 				<div className="flex flex-row gap-2">
-					<form onSubmit={handleFormSubmitSearch}>
+					<form>
 						<input
 							type="text"
 							value={searchQuery}
@@ -55,7 +55,6 @@ const Search = () => {
 							placeholder="Search..."
 							className="w-1/2 p-2 border border-gray-400 rounded-lg"
 						/>
-						<input type="submit" className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg" value="Search" />
 					</form>
 					<form onSubmit={handleFormSubmit}>
 						<input
@@ -94,11 +93,11 @@ const Search = () => {
 				</div>
 			</div>
 			<div className="flex justify-center ">
-				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">1</button>
-				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">2</button>
-				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">3</button>
-				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">4</button>
-				<button className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">5</button>
+				<button onClick={() => setPage(1)} className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">1</button>
+				<button onClick={() => setPage(2)} className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">2</button>
+				<button onClick={() => setPage(3)} className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">3</button>
+				<button onClick={() => setPage(4)} className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">4</button>
+				<button onClick={() => setPage(5)} className="px-4 py-2 ml-2 text-white bg-blue-500 rounded-lg">5</button>
 			</div>
 		</div>
 	);
