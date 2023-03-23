@@ -1,16 +1,41 @@
-import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 const Learner = () => {
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+	const [profilePicture, setProfilePicture] = useState([]);
+	const [nidPicture, setNidPicture] = useState([]);
+	const [success, setSuccess] = useState('');
+	const [error, setError] = useState('');
 
+	const navigate = useNavigate()
 	const password = useRef({});
 	password.current = watch("password", "");
 
 	const onSubmit = async (data) => {
-		console.log(data?.profilePicture[0]);
+		const formData = new FormData();
+		formData.append('profilePicture', profilePicture);
+		formData.append('nidPicture', nidPicture);
+		formData.append('name', data.name)
+		formData.append('password', data.password)
+		formData.append('email', data.email)
+		formData.append('address', data.address)
+		formData.append('age', data.age)
+		formData.append('phone', data.phone)
+		formData.append('vehicle', data.vehicle)
+
+		fetch('http://localhost:5000/auth/learner', {
+			method: 'POST',
+			body: formData,
+		})
+			.then(res => res.json())
+			.then(data => {
+				setSuccess(data)
+				navigate('/login');
+			}).catch((err) => setError(err));
+
 	}
 	const validateConfirmPassword = (value) => {
 		if (value !== password.current) {
@@ -82,22 +107,6 @@ const Learner = () => {
 								{errors.confirmPassword && <p className='text-red-500 label-text-alt'>{errors.confirmPassword.message}</p>}
 							</label>
 
-							<label className='block mb-2 text-sm font-semibold text-gray-900'>Profile Picture</label>
-							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
-								<FaCloudUploadAlt className="mr-2" />
-								<span>Choose Image</span>
-								<input
-									type="file"
-									id="image"
-									accept="image/*"
-									{...register("profilePicture", {
-										required: "You must select an image"
-									})}
-									className="sr-only"
-								/>
-							</label>
-							{errors.profilePicture && <p className="text-red-500 label-text-alt">{errors.profilePicture.message}</p>}
-
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Address</label>
 							<input type="address" placeholder="address" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("address", {
@@ -120,22 +129,6 @@ const Learner = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.age?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.age?.message}</span>}
 							</label>
-							{/* 
-							<label className='block mb-2 text-sm font-semibold text-gray-900'>NID Card Picture</label>
-							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
-								<FaCloudUploadAlt className="mr-2" />
-								<span>Choose Image</span>
-								<input
-									type="file"
-									id="image"
-									accept="image/*"
-									{...register("nidPicture", {
-										required: "You must select an image"
-									})}
-									className="sr-only"
-								/>
-							</label>
-							{errors.nidPicture && <p className="text-red-500 label-text-alt">{errors.nidPicture.message}</p>} */}
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Phone</label>
 							<input type="phone" placeholder="+8801793800000" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("phone", {
@@ -148,6 +141,23 @@ const Learner = () => {
 								{errors.phone?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.phone?.message}</span>}
 							</label>
 
+							<label className='block mb-2 text-sm font-semibold text-gray-900'>Profile Picture</label>
+							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
+								<FaCloudUploadAlt className="mr-2" />
+								<span>Choose Image</span>
+								<input type="file" accept='image'
+									onChange={e => setProfilePicture(e.target.files[0])} id="files" />
+							</label>
+
+							<label className='block mb-2 text-sm font-semibold text-gray-900'>NID Card Picture</label>
+							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
+								<FaCloudUploadAlt className="mr-2" />
+								<span>Choose Image</span>
+								<input type="file" accept='image'
+									onChange={e => setNidPicture(e.target.files[0])} id="files" />
+							</label>
+
+
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Vehicle Type</label>
 							<select className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("vehicle")}>
 								<option value="car">Car</option>
@@ -156,6 +166,8 @@ const Learner = () => {
 
 							<input className='mt-3 w-full inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 cursor-pointer' type="submit" value="SIGNUP" />
 						</div>
+						{success && <p className='text-base text-green-500'>{success}</p>}
+						{error && <p className='text-base text-red-500'>{error}</p>}
 					</form>
 				</div>
 			</div>

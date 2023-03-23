@@ -9,7 +9,6 @@ import Dashboard from "../Layout/Dashboard";
 import Profile from "../components/Dashboard/Profile";
 import Search from "../components/Dashboard/Search";
 import PrivateRoute from "../components/Auth/PrivateRoute";
-import Register from "../components/Auth/Register";
 
 
 const router = createBrowserRouter([
@@ -21,10 +20,6 @@ const router = createBrowserRouter([
 			{
 				path: '/',
 				element: <Home />
-			},
-			{
-				path: '/register',
-				element: <Register />
 			},
 			{
 				path: '/login',

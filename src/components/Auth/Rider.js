@@ -1,16 +1,28 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 const Rider = () => {
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+	const [profilePicture, setProfilePicture] = useState([]);
+	const [nidPicture, setNidPicture] = useState([]);
+	const [drivingLicense, setDrivingLicense] = useState([]);
+	const [carNamePlate, setCarNamePlate] = useState([]);
+	console.log(profilePicture)
+	console.log(nidPicture)
+	console.log(drivingLicense)
+	console.log(carNamePlate)
 
 	const password = useRef({});
 	password.current = watch("password", "");
 
 	const onSubmit = async (data) => {
-		console.log(data?.profilePicture[0]);
+		const formData = new FormData();
+		formData.append('profilePicture', profilePicture);
+		formData.append('nidPicture', nidPicture);
+		formData.append('drivingLicense', drivingLicense);
+		formData.append('carNamePlate', carNamePlate);
 	}
 	const validateConfirmPassword = (value) => {
 		if (value !== password.current) {
@@ -82,22 +94,6 @@ const Rider = () => {
 								{errors.confirmPassword && <p className='text-red-500 label-text-alt'>{errors.confirmPassword.message}</p>}
 							</label>
 
-							<label className='block mb-2 text-sm font-semibold text-gray-900'>Profile Picture</label>
-							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
-								<FaCloudUploadAlt className="mr-2" />
-								<span>Choose Image</span>
-								<input
-									type="file"
-									id="files"
-									accept="image"
-									{...register("profilePicture", {
-										required: "You must select an image"
-									})}
-									className="sr-only"
-								/>
-							</label>
-							{errors.profilePicture && <p className="text-red-500 label-text-alt">{errors.profilePicture.message}</p>}
-
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Address</label>
 							<input type="address" placeholder="address" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("address", {
@@ -120,22 +116,6 @@ const Rider = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.age?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.age?.message}</span>}
 							</label>
-							{/* 
-							<label className='block mb-2 text-sm font-semibold text-gray-900'>NID Card Picture</label>
-							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
-								<FaCloudUploadAlt className="mr-2" />
-								<span>Choose Image</span>
-								<input
-									type="file"
-									id="image"
-									accept="image/*"
-									{...register("nidPicture", {
-										required: "You must select an image"
-									})}
-									className="sr-only"
-								/>
-							</label>
-							{errors.nidPicture && <p className="text-red-500 label-text-alt">{errors.nidPicture.message}</p>} */}
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Phone</label>
 							<input type="phone" placeholder="+8801793800000" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("phone", {
@@ -158,22 +138,8 @@ const Rider = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.area?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.area?.message}</span>}
 							</label>
-							{/* 
-							<label className='block mb-2 text-sm font-semibold text-gray-900'>Driving License Picture</label>
-							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
-								<FaCloudUploadAlt className="mr-2" />
-								<span>Choose Image</span>
-								<input
-									type="file"
-									id="image"
-									accept="image/*"
-									{...register("drivingLicense", {
-										required: "You must select an image"
-									})}
-									className="sr-only"
-								/>
-							</label>
-							{errors.drivingLicense && <p className="text-red-500 label-text-alt">{errors.drivingLicense.message}</p>} */}
+
+
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Car Name</label>
 							<input type="text" placeholder="BMW" className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("carName", {
@@ -196,22 +162,38 @@ const Rider = () => {
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>
 								{errors.carModel?.type === 'required' && <span className="text-red-500 label-text-alt">{errors.carModel?.message}</span>}
 							</label>
-							{/* 
+
+							<label className='block mb-2 text-sm font-semibold text-gray-900'>Driving License Picture</label>
+							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
+								<FaCloudUploadAlt className="mr-2" />
+								<span>Choose Image</span>
+								<input type="file" accept='image'
+									onChange={e => setDrivingLicense(e.target.files[0])} id="files" />
+							</label>
+
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Car Name Plate Picture</label>
 							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
 								<FaCloudUploadAlt className="mr-2" />
 								<span>Choose Image</span>
-								<input
-									type="file"
-									id="image"
-									accept="image/*"
-									{...register("carNamePlate", {
-										required: "You must select an image"
-									})}
-									className="sr-only"
-								/>
+								<input type="file" accept='image'
+									onChange={e => setCarNamePlate(e.target.files[0])} id="files" />
 							</label>
-							{errors.carNamePlate && <p className="text-red-500 label-text-alt">{errors.carNamePlate.message}</p>} */}
+
+							<label className='block mb-2 text-sm font-semibold text-gray-900'>Profile Picture</label>
+							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
+								<FaCloudUploadAlt className="mr-2" />
+								<span>Choose Image</span>
+								<input type="file" accept='image'
+									onChange={e => setProfilePicture(e.target.files[0])} id="files" />
+							</label>
+
+							<label className='block mb-2 text-sm font-semibold text-gray-900'>NID Card Picture</label>
+							<label htmlFor="image" className="flex items-center justify-center w-full p-4 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-200 rounded-md cursor-pointer">
+								<FaCloudUploadAlt className="mr-2" />
+								<span>Choose Image</span>
+								<input type="file" accept='image'
+									onChange={e => setNidPicture(e.target.files[0])} id="files" />
+							</label>
 
 							<label className='block mb-2 text-sm font-semibold text-gray-900'>Vehicle Type</label>
 							<select className="block w-full appearance-none rounded-lg border bg-white py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-gray-900 placeholder:text-gray-400 focus:border-stone-500 focus:outline-none focus:ring-cyan-500 sm:text-sm" {...register("vehicle")}>

@@ -6,7 +6,7 @@ const Login = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm();
 	const [error, setError] = useState('');
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const onSubmit = data => {
 		const user = {
 			email: data.email,
@@ -72,6 +72,9 @@ const Login = () => {
 							</label>
 
 							<input className='mt-3 w-full inline-flex justify-center rounded-lg border py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm outline-2 outline-offset-2 transition-colors bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80 cursor-pointer' type="submit" value="LOGIN" />
+							<div className="text-center"></div>
+							<p className='mb-2 ml-2 text-sm text-gray-900 cursor-pointer'><Link to='/signup-rider'>Accounts for students</Link></p> <p className='mt-2 text-sm text-gray-900 cursor-pointer'><Link to='/signup-learner'>Accounts for teachers</Link></p>
+
 						</div>
 					</form>
 				</div>
