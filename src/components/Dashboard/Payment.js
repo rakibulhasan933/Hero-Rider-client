@@ -13,7 +13,7 @@ const Payment = () => {
 
 	const email = localStorage.getItem('refreshToken');
 	useEffect(() => {
-		fetch(`http://localhost:5000/auth/user/${email}`, {
+		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/user/${email}`, {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',
@@ -29,7 +29,7 @@ const Payment = () => {
 
 	useEffect(() => {
 		setLoading(true)
-		fetch(`http://localhost:5000/auth/services/${id}`, {
+		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/services/${id}`, {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',

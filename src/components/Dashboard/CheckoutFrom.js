@@ -19,7 +19,7 @@ const CheckoutFrom = ({ course, user }) => {
 
 
 	useEffect(() => {
-		fetch('http://localhost:5000/auth/payment', {
+		fetch('https://hero-rider-backend-mauve.vercel.app/auth/payment', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
@@ -86,7 +86,7 @@ const CheckoutFrom = ({ course, user }) => {
 
 			};
 
-			fetch('http://localhost:5000/auth/payment-saved', {
+			fetch('https://hero-rider-backend-mauve.vercel.app/auth/payment-saved', {
 				method: 'POST',
 				headers: {
 					'content-type': 'application/json',

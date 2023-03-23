@@ -4,7 +4,7 @@ const Profile = () => {
 	const email = localStorage.getItem('refreshToken');
 	const [user, setUser] = useState('');
 	useEffect(() => {
-		fetch(`http://localhost:5000/auth/user/${email}`)
+		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/user/${email}`)
 			.then(res => res.json())
 			.then(data => {
 				console.log(data)
