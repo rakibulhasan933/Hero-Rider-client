@@ -8,7 +8,7 @@ const Products = () => {
 
 	useEffect(() => {
 		setLoading(true)
-		fetch('https://hero-rider-backend-mauve.vercel.app/auth/services', {
+		fetch('http://localhost:5000/auth/services', {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',

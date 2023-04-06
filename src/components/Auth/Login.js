@@ -12,7 +12,7 @@ const Login = () => {
 			email: data.email,
 			password: data.password,
 		};
-		fetch('https://hero-rider-backend-mauve.vercel.app/auth/login', {
+		fetch('http://localhost:5000/auth/login', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json'

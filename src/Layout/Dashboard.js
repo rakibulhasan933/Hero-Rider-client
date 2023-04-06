@@ -5,7 +5,7 @@ const Dashboard = () => {
 	const email = localStorage.getItem('refreshToken');
 	const [user, setUser] = useState('');
 	useEffect(() => {
-		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/user/${email}`, {
+		fetch(`http://localhost:5000/auth/user/${email}`, {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',

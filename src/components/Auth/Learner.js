@@ -26,7 +26,7 @@ const Learner = () => {
 		formData.append('phone', data.phone)
 		formData.append('vehicle', data.vehicle)
 
-		fetch('https://hero-rider-backend-mauve.vercel.app/auth/learner', {
+		fetch('http://localhost:5000/auth/learner', {
 			method: 'POST',
 			body: formData,
 		})

@@ -16,7 +16,7 @@ const Search = () => {
 		setSearchQuery(event.target.value);
 	}
 	useEffect(() => {
-		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/student?search=${searchQuery}&page=${page}`)
+		fetch(`http://localhost:5000/auth/student?search=${searchQuery}&page=${page}`)
 			.then(res => res.json()).then((data) => {
 				setResult(data.students)
 			})
@@ -25,7 +25,7 @@ const Search = () => {
 	function handleFormSubmit(event) {
 		event.preventDefault();
 		setLoading(true);
-		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/student?highest=${highest}&lowest=${lowest}&page=${page}`)
+		fetch(`http://localhost:5000/auth/student?highest=${highest}&lowest=${lowest}&page=${page}`)
 			.then(res => res.json())
 			.then((data) => {
 				setLoading(false)

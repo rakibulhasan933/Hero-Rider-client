@@ -10,7 +10,7 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 
 	const handleBlock = () => {
 		setLoading(true)
-		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/remove-block/${email}`, {
+		fetch(`http://localhost:5000/auth/remove-block/${email}`, {
 			method: 'PATCH',
 			headers: {
 				headers: {
@@ -33,7 +33,7 @@ const StatusUpdateUser = ({ setStatusUpdate, statusUpdate }) => {
 	}
 	const handleUnBlock = () => {
 		setLoading(true)
-		fetch(`https://hero-rider-backend-mauve.vercel.app/auth/remove-block/${email}`, {
+		fetch(`http://localhost:5000/auth/remove-block/${email}`, {
 			method: 'PATCH',
 			headers: {
 				headers: {
